@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>Registration</h3><br>
-	<form action="register" method="Post">
+	<form action="register" method="Post" enctype="multipart/form-data">
 	<% if(session.getAttribute("registerErr") != null){ %>
 
 			<h2><%= session.getAttribute("registerErr") %></h2>
@@ -18,6 +18,10 @@
 	<input type="text" placeholder="Enter name" name="name" /><br><br>
 	<input type="text" placeholder="Enter email" name="email"/><br><br>
 	<input type="password" placeholder="Enter password" name="password"/><br><br>
+	<div>
+		<input type="file" name="image" accept="image/png, image/jpeg" >
+	</div>
+	<br><br>
 	<button name="register">Register</button>
 	</form>
 </body>

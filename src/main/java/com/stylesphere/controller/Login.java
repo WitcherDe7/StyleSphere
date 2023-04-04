@@ -1,4 +1,4 @@
-package com.stylesphere.servlet;
+package com.stylesphere.controller;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.stylesphere.database.*;
+import com.stylesphere.model.*;
 
 @WebServlet("/views/login")
 public class Login extends HttpServlet {

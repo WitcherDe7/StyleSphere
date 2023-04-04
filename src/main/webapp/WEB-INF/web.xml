@@ -11,11 +11,11 @@
   </welcome-file-list>
   <context-param>
 		<param-name>imagePath</param-name>
-		<param-value>C:/Users/iamde/eclipse-workspace/StudentRecordSystem/src/main/webapp/images/</param-value>
+		<param-value>C:/Users/iamde/eclipse-workspace/StyleSphere/src/main/webapp/images/</param-value>
 	</context-param> 
 	
-	<servlet>
-	    <servlet-name>profile</servlet-name>
-	    <jsp-file>/views/profile.jsp</jsp-file>
-	</servlet>
+<!-- 	<servlet-mapping>
+        <servlet-name>/</servlet-name>
+        <url-pattern>/views/*</url-pattern>
+    </servlet-mapping> -->
 </web-app>

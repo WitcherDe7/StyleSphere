@@ -1,5 +1,5 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.stylesphere.database.*"%>
+<%@page import="com.stylesphere.model.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
@@ -20,7 +20,10 @@
 <title>Users List</title>
 </head>
 <body>
-	<h2>Hello <%= session.getAttribute("loggedInId") %></h2>
+	<%
+		String email = (String) session.getAttribute("loggedInId");
+	%>
+	<p>Your email is: <%= email %></p>
 <h1>This is Profile.</h1>
 <form id="logout-form" method="post" action="${pageContext.request.contextPath}/logout">
     <input type="hidden" name="logout" value="true" />
@@ -31,7 +34,8 @@
 	
 	<%
 		UserDao uDao = new UserDao();
-		ResultSet table = uDao.fetchRecord();
+		ResultSet table = uDao.fetchUserRecord(email);
+
 		if(table != null){
 	%>	
 			<table border="1">
@@ -63,12 +67,12 @@
 		}	
 	%>
 	
+		<% Integer role = (Integer) session.getAttribute("role");
+		   if (role != null && role == 1) { %>
+		   you are admin
+		<% } else { %>
+		   <h1>You are not admin</h1>
+		<% } %>
 	
-	<% Integer role = (Integer) session.getAttribute("role");
-	   if (role != null && role == 1) { %>
-	   you are admin
-	<% } else { %>
-	   <h1>You are not admin</h1>
-	<% } %>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.stylesphere.servlet;
+package com.stylesphere.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.stylesphere.database.*;
+import com.stylesphere.model.*;
 
 
 @SuppressWarnings("serial")
@@ -26,6 +26,11 @@ public class Registration extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
+		Part userImage = request.getPart("image");
+		String path = getServletContext().getInitParameter("imagePath");
+		userImage.write(path+"userimage/_"+name+".png");
+		
+
 		
 		UserDao uDao = new UserDao();
 		String message = uDao.registration(name, email, password);

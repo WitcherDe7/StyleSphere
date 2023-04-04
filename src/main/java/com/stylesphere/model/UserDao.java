@@ -1,4 +1,4 @@
-package com.stylesphere.database;
+package com.stylesphere.model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +22,7 @@ public class UserDao {
     public String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            String saltedPassword = "mySalt" + password; // change "mySalt" to a unique salt for your application
+            String saltedPassword = "ASLheir_@#!!!owpe" + password; 
             byte[] hashedPassword = md.digest(saltedPassword.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : hashedPassword) {
@@ -71,6 +71,24 @@ public class UserDao {
         }
         return null;
     }
+    
+    public ResultSet fetchUserRecord(String email) {
+        try {
+            Connection con = getConnection();
+            String query = "SELECT * FROM users WHERE email = ?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, email);
+            ResultSet table = st.executeQuery();
+            // do not close connection here to allow further processing of the ResultSet
+            return table;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
+
     
     public boolean checkLogin(String email, String password) {
         boolean isValid = false;
